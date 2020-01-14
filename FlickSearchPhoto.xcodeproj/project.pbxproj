@@ -18,6 +18,7 @@
 		D5B5048823CE2DA700A5332C /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5048723CE2DA700A5332C /* UITableViewCell+Extension.swift */; };
 		D5B5048A23CE2DC800A5332C /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5048923CE2DC800A5332C /* UIImageView+Extension.swift */; };
 		D5B5048C23CE2DE700A5332C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5048B23CE2DE700A5332C /* UIColor+Extension.swift */; };
+		D5B5049823CE344800A5332C /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5049723CE344800A5332C /* UICollectionViewCell+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		D5B5048723CE2DA700A5332C /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		D5B5048923CE2DC800A5332C /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		D5B5048B23CE2DE700A5332C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		D5B5049723CE344800A5332C /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				D5B5048723CE2DA700A5332C /* UITableViewCell+Extension.swift */,
 				D5B5048923CE2DC800A5332C /* UIImageView+Extension.swift */,
 				D5B5048B23CE2DE700A5332C /* UIColor+Extension.swift */,
+				D5B5049723CE344800A5332C /* UICollectionViewCell+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				D517B82223CDFD7900FC3F3E /* SearchViewController.swift in Sources */,
 				D5B5048323CE156200A5332C /* SearchDataSource.swift in Sources */,
 				D5B5048C23CE2DE700A5332C /* UIColor+Extension.swift in Sources */,
+				D5B5049823CE344800A5332C /* UICollectionViewCell+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
