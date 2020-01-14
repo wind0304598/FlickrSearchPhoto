@@ -14,6 +14,7 @@
 		D517B82223CDFD7900FC3F3E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517B82123CDFD7900FC3F3E /* SearchViewController.swift */; };
 		D517B82523CDFDC000FC3F3E /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517B82423CDFDC000FC3F3E /* FavoriteViewController.swift */; };
 		D5B5048323CE156200A5332C /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5048223CE156200A5332C /* SearchDataSource.swift */; };
+		D5B5048523CE2C8D00A5332C /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5048423CE2C8D00A5332C /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		D517B82123CDFD7900FC3F3E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D517B82423CDFDC000FC3F3E /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		D5B5048223CE156200A5332C /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
+		D5B5048423CE2C8D00A5332C /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				D517B7FB23CDF9F400FC3F3E /* AppDelegate.swift */,
 				D517B82123CDFD7900FC3F3E /* SearchViewController.swift */,
 				D5B5048223CE156200A5332C /* SearchDataSource.swift */,
+				D5B5048423CE2C8D00A5332C /* ResultViewController.swift */,
 				D517B82423CDFDC000FC3F3E /* FavoriteViewController.swift */,
 			);
 			path = Classes;
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5B5048523CE2C8D00A5332C /* ResultViewController.swift in Sources */,
 				D517B7FC23CDF9F400FC3F3E /* AppDelegate.swift in Sources */,
 				D517B82523CDFDC000FC3F3E /* FavoriteViewController.swift in Sources */,
 				D517B82223CDFD7900FC3F3E /* SearchViewController.swift in Sources */,

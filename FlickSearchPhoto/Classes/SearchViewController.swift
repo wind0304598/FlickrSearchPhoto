@@ -57,7 +57,6 @@ class SearchViewController: UIViewController {
 extension SearchViewController {
     
     private func setupViews() -> Void {
-        view.backgroundColor = .white
         
         let objectSize = CGSize(width: view.frame.width - 32, height: 32)
         
