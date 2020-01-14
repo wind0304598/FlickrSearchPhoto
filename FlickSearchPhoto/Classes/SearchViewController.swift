@@ -10,6 +10,8 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    private let dataSource = SearchDataSource()
+    
     private lazy var numberSet = CharacterSet(charactersIn: "0123456789")
     
     private lazy var searchField: UITextField = {
@@ -45,6 +47,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         title = "搜尋輸入頁"
+        dataSource.delegate = self
         setupViews()
     }
 }
@@ -77,7 +80,7 @@ extension SearchViewController {
 extension SearchViewController {
     
     @objc private func tapSearchButton() -> Void {
-        
+        search()
     }
 }
 
@@ -88,6 +91,13 @@ extension SearchViewController {
         let hasSearchText = searchField.text?.count ?? 0 > 0
         let hasPageSize = pageSizeField.text?.count ?? 0 > 0
         searchButton.isEnabled = hasSearchText && hasPageSize
+    }
+    
+    private func search() -> Void {
+        guard let text = searchField.text, let pageSizeString = pageSizeField.text, let pageSize = Int(pageSizeString) else {
+            return
+        }
+        dataSource.search(text, with: pageSize)
     }
 }
 
@@ -101,6 +111,14 @@ extension SearchViewController: UITextFieldDelegate {
         
         let incomingString = CharacterSet(charactersIn: string)
         return numberSet.isSuperset(of: incomingString)
+    }
+}
+
+// MARK: - SearchDataSourceDelegate
+
+extension SearchViewController: SearchDataSourceDelegate {
+    func dataSource(_ dataSource: SearchDataSource, didFetchWithResult result: Result) {
+        
     }
 }
 
