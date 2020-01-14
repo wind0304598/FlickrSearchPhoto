@@ -46,17 +46,25 @@ final class SearchDataSource {
     
     weak var delegate: SearchDataSourceDelegate?
     
+    private let searchText: String
+    private let pageSize: Int
+    
     private var dataTask: URLSessionDataTask?
     private var page = 1
+    
+    init(withSearchText text: String, pageSize aPageSize: Int) {
+        searchText = text
+        pageSize = aPageSize
+    }
 }
 
 // MARK: - Private Methods
 
 extension SearchDataSource {
     
-    private func searchInternal(_ text: String, with pageSize: Int) -> Void {
+    private func searchInternal() -> Void {
         dataTask?.cancel()
-        guard let url = URL(string: "\(kSearchApiUrlString)&api_key=\(kApiKey)&text=\(text)&per_page=\(pageSize)&page=\(page)") else {
+        guard let url = URL(string: "\(kSearchApiUrlString)&api_key=\(kApiKey)&text=\(searchText)&per_page=\(pageSize)&page=\(page)") else {
             return
         }
         dataTask = URLSession.init(configuration: .default).dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
@@ -89,13 +97,13 @@ extension SearchDataSource {
 // MARK: - Public Methods
 
 extension SearchDataSource {
-    func search(_ text: String, with pageSize: Int) -> Void {
+    func search() -> Void {
         page = 1
-        searchInternal(text, with: pageSize)
+        searchInternal()
     }
     
-    func loadMore(_ text: String, with pageSize: Int) -> Void {
+    func loadMore() -> Void {
         page += 1
-        searchInternal(text, with: pageSize)
+        searchInternal()
     }
 }
