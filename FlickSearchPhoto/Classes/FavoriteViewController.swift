@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  FavoriteViewController.swift
 //  FlickSearchPhoto
 //
 //  Created by 張聰益 on 2020/1/14.
@@ -8,13 +8,11 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FavoriteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        view.backgroundColor = .white
     }
-
-
 }
-
