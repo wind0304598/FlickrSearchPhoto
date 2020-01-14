@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let favoriteViewController = FavoriteViewController()
         favoriteViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         
-        tabBarController.viewControllers = [searchViewController, favoriteViewController]
+        tabBarController.viewControllers = [UINavigationController(rootViewController: searchViewController),
+                                            UINavigationController(rootViewController: favoriteViewController)]
         
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
