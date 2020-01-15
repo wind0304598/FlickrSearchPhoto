@@ -19,6 +19,7 @@
 		D5B5048A23CE2DC800A5332C /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5048923CE2DC800A5332C /* UIImageView+Extension.swift */; };
 		D5B5048C23CE2DE700A5332C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5048B23CE2DE700A5332C /* UIColor+Extension.swift */; };
 		D5B5049823CE344800A5332C /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B5049723CE344800A5332C /* UICollectionViewCell+Extension.swift */; };
+		D5BFF5AD23CF6A0E00AED6C4 /* SearchPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BFF5AC23CF6A0E00AED6C4 /* SearchPhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		D5B5048923CE2DC800A5332C /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		D5B5048B23CE2DE700A5332C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D5B5049723CE344800A5332C /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
+		D5BFF5AC23CF6A0E00AED6C4 /* SearchPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				D5B5048623CE2D8200A5332C /* Extension */,
+				D5B5049923CF0D0300A5332C /* Search */,
 				D517B7FB23CDF9F400FC3F3E /* AppDelegate.swift */,
-				D517B82123CDFD7900FC3F3E /* SearchViewController.swift */,
-				D5B5048223CE156200A5332C /* SearchDataSource.swift */,
-				D5B5048423CE2C8D00A5332C /* ResultViewController.swift */,
 				D517B82423CDFDC000FC3F3E /* FavoriteViewController.swift */,
 			);
 			path = Classes;
@@ -128,6 +128,17 @@
 				D5B5049723CE344800A5332C /* UICollectionViewCell+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		D5B5049923CF0D0300A5332C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D517B82123CDFD7900FC3F3E /* SearchViewController.swift */,
+				D5B5048223CE156200A5332C /* SearchDataSource.swift */,
+				D5B5048423CE2C8D00A5332C /* ResultViewController.swift */,
+				D5BFF5AC23CF6A0E00AED6C4 /* SearchPhotoCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 				D5B5048823CE2DA700A5332C /* UITableViewCell+Extension.swift in Sources */,
 				D5B5048A23CE2DC800A5332C /* UIImageView+Extension.swift in Sources */,
 				D517B7FC23CDF9F400FC3F3E /* AppDelegate.swift in Sources */,
+				D5BFF5AD23CF6A0E00AED6C4 /* SearchPhotoCell.swift in Sources */,
 				D517B82523CDFDC000FC3F3E /* FavoriteViewController.swift in Sources */,
 				D517B82223CDFD7900FC3F3E /* SearchViewController.swift in Sources */,
 				D5B5048323CE156200A5332C /* SearchDataSource.swift in Sources */,

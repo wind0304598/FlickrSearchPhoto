@@ -8,8 +8,8 @@
 
 import Foundation
 
-private let kApiKey = "452c654457ac2a04c3bd138ae06c8761"
-private let kSearchApiUrlString = "https://www.flickr.com/services/rest/?format=json&nojsoncallback=1&method=flickr.photos.search"
+private let kApiKey = "5af828e3e5c2b87cbe93f69d2b7acecd"
+private let kSearchApiUrlString = "https://www.flickr.com/services/rest/"
 
 private struct SearchResponse: Decodable {
     let result: Result
@@ -39,7 +39,7 @@ struct Photo: Decodable {
 }
 
 protocol SearchDataSourceDelegate: class {
-    func dataSource(_ dataSource: SearchDataSource, didFetchWithResult result: Result) -> Void
+    func dataSource(_ dataSource: SearchDataSource, didInsertPhotosWithRange range: Range<Int>, deletedAmount amount: Int) -> Void
 }
 
 final class SearchDataSource {
@@ -51,6 +51,7 @@ final class SearchDataSource {
     
     private var dataTask: URLSessionDataTask?
     private var page = 1
+    private(set) var photos = [Photo]()
     
     init(withSearchText text: String, pageSize aPageSize: Int) {
         searchText = text
@@ -64,7 +65,22 @@ extension SearchDataSource {
     
     private func searchInternal() -> Void {
         dataTask?.cancel()
-        guard let url = URL(string: "\(kSearchApiUrlString)&api_key=\(kApiKey)&text=\(searchText)&per_page=\(pageSize)&page=\(page)") else {
+        var components = URLComponents(string: kSearchApiUrlString)
+        guard let _ = components else {
+            NSLog("URLComponents are nil")
+            return
+        }
+        
+        components!.queryItems = [
+            URLQueryItem(name: "format", value: "json"),
+            URLQueryItem(name: "nojsoncallback", value: "1"),
+            URLQueryItem(name: "method", value: "flickr.photos.search"),
+            URLQueryItem(name: "api_key", value: kApiKey),
+            URLQueryItem(name: "per_page", value: "\(pageSize)"),
+            URLQueryItem(name: "page", value: "\(page)"),
+            URLQueryItem(name: "text", value: searchText),
+        ]
+        guard let url = components?.url else {
             return
         }
         dataTask = URLSession.init(configuration: .default).dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
@@ -84,7 +100,16 @@ extension SearchDataSource {
             do {
                 let response = try JSONDecoder().decode(SearchResponse.self, from: data)
                 DispatchQueue.main.async {
-                    self.delegate?.dataSource(self, didFetchWithResult: response.result)
+                    var oldCount = self.photos.count
+                    var deletedAmount = 0
+                    if response.result.page == 1 {
+                        deletedAmount = oldCount
+                        oldCount = 0
+                        self.photos.removeAll()
+                    }
+                    self.photos.append(contentsOf: response.result.photos)
+                    self.page += 1
+                    self.delegate?.dataSource(self, didInsertPhotosWithRange: oldCount..<self.photos.count, deletedAmount: deletedAmount)
                 }
             } catch {
                 print("Json decoder error with message:")
@@ -97,13 +122,13 @@ extension SearchDataSource {
 // MARK: - Public Methods
 
 extension SearchDataSource {
+    
     func search() -> Void {
         page = 1
         searchInternal()
     }
     
     func loadMore() -> Void {
-        page += 1
         searchInternal()
     }
 }
