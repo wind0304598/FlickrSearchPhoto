@@ -10,7 +10,15 @@ import UIKit
 
 extension UIImageView {
     public func setupImage(from urlString: String?) -> Void {
-        guard let urlString = urlString, let url = URL(string: urlString) else {
+        guard let urlString = urlString else {
+            return
+        }
+        
+        setupImage(from: URL(string: urlString))
+    }
+    
+    public func setupImage(from url: URL?) -> Void {
+        guard let url = url else {
             return
         }
         
