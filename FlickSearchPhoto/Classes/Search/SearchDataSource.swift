@@ -129,6 +129,9 @@ extension SearchDataSource {
     }
     
     func loadMore() -> Void {
+        guard dataTask == nil else {
+            return
+        }
         searchInternal()
     }
 }

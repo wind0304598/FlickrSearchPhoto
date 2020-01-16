@@ -22,6 +22,7 @@ class ResultViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout:layout)
         collectionView.register(SearchPhotoCell.self, forCellWithReuseIdentifier: SearchPhotoCell.reuseIdentifier)
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -69,6 +70,17 @@ extension ResultViewController: UICollectionViewDataSource {
         }
         cell.config(with: photo)
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension ResultViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard dataSource.photos.count - indexPath.row <= 2 else {
+            return
+        }
+        dataSource.loadMore()
     }
 }
 
