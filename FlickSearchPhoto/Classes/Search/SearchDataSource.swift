@@ -29,12 +29,19 @@ struct Result: Decodable {
     }
 }
 
-struct Photo: Decodable {
+struct Photo: Codable {
     let id, secret, server: String
     let title: String
     
     var imageUrl: URL {
         return URL(string: "https://live.staticflickr.com/\(server)/\(id)_\(secret).jpg")!
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case secret
+        case server
+        case title
     }
 }
 
@@ -52,10 +59,12 @@ final class SearchDataSource {
     private var dataTask: URLSessionDataTask?
     private var page = 1
     private(set) var photos = [Photo]()
+    private(set) var favorites = [Photo]()
     
     init(withSearchText text: String, pageSize aPageSize: Int) {
         searchText = text
         pageSize = aPageSize
+        setupFavorites()
     }
 }
 
@@ -133,5 +142,51 @@ extension SearchDataSource {
             return
         }
         searchInternal()
+    }
+    
+    func favorite(at indexPath: IndexPath) -> Void {
+        let photo = photos[indexPath.row]
+        favorites.append(photo)
+        UserDefaults.standard.favorite(photos: favorites)
+    }
+    
+    func unfavorite(at indexPath: IndexPath) -> Void {
+        let photo = photos[indexPath.row]
+        favorites.removeAll { (favorite) -> Bool in
+            return favorite.id == photo.id
+        }
+        UserDefaults.standard.favorite(photos: favorites)
+    }
+    
+    func isFavorite(at indexPath: IndexPath) -> Bool {
+        let photo = photos[indexPath.row]
+        return favorites.first(where: { $0.id == photo.id }) != nil
+    }
+}
+
+// MARK: - Favorite Related
+
+extension SearchDataSource {
+    private func setupFavorites() -> Void {
+        guard let favorites = UserDefaults.standard.getFavoritePhotos() else {
+            return
+        }
+        self.favorites.append(contentsOf: favorites)
+    }
+}
+
+// MARK: - Tool
+
+extension UserDefaults {
+    
+    func favorite(photos: [Photo]) -> Void {
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(photos), forKey: "Favorites")
+    }
+    
+    func getFavoritePhotos() -> [Photo]? {
+        guard let data = UserDefaults.standard.value(forKey: "Favorites") as? Data else {
+            return nil
+        }
+        return try? PropertyListDecoder().decode(Array<Photo>.self, from: data)
     }
 }

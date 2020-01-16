@@ -21,7 +21,15 @@ class SearchPhotoCell: UICollectionViewCell {
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .black
+        label.textAlignment = .center
         return label
+    }()
+    private let likeImageView: UIImageView = {
+        let view = UIImageView()
+        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFill
+        view.image = UIImage(named: "Search/ic_like")
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -30,6 +38,7 @@ class SearchPhotoCell: UICollectionViewCell {
         clipsToBounds = true
         addSubview(photoImageView)
         addSubview(titleLabel)
+        addSubview(likeImageView)
     }
     
     required init?(coder: NSCoder) {
@@ -39,16 +48,18 @@ class SearchPhotoCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         photoImageView.frame = CGRect(origin: .zero, size: CGSize(width: bounds.width, height: bounds.width))
-        titleLabel.sizeToFit()
-        titleLabel.center = CGPoint(x: photoImageView.center.x, y: photoImageView.bounds.maxY + titleLabel.font.lineHeight / 2.0)
+        titleLabel.frame = CGRect(x: 0, y: 0, width: bounds.width, height: titleLabel.font.lineHeight)
+        titleLabel.center.y = photoImageView.bounds.maxY + titleLabel.font.lineHeight / 2.0
+        likeImageView.frame = CGRect(x: bounds.maxX - 28, y: 0, width: 28, height: 28)
     }
 }
 
 // MARK: - Public Methods
 
 extension SearchPhotoCell {
-    func config(with photo: Photo) -> Void {
+    func config(with photo: Photo, favorite: Bool) -> Void {
         photoImageView.setupImage(from: photo.imageUrl)
         titleLabel.text = photo.title
+        likeImageView.image = UIImage(named: favorite ? "Search/ic_liked" : "Search/ic_like")
     }
 }

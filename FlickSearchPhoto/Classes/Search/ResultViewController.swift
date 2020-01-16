@@ -68,7 +68,7 @@ extension ResultViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchPhotoCell.reuseIdentifier, for: indexPath) as? SearchPhotoCell else {
             fatalError("CollectionView dequeue reusable cell failed.")
         }
-        cell.config(with: photo)
+        cell.config(with: photo, favorite: dataSource.isFavorite(at: indexPath))
         return cell
     }
 }
@@ -81,6 +81,15 @@ extension ResultViewController: UICollectionViewDelegate {
             return
         }
         dataSource.loadMore()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if dataSource.isFavorite(at: indexPath) {
+            dataSource.unfavorite(at: indexPath)
+        } else {
+            dataSource.favorite(at: indexPath)
+        }
+        collectionView.reloadItems(at: [indexPath])
     }
 }
 
