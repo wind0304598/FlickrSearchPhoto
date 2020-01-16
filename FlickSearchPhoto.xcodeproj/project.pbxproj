@@ -111,10 +111,10 @@
 		D517B82323CDFD8300FC3F3E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D5BFF5B823D0B48800AED6C4 /* Favorite */,
 				D5B5048623CE2D8200A5332C /* Extension */,
 				D5B5049923CF0D0300A5332C /* Search */,
 				D517B7FB23CDF9F400FC3F3E /* AppDelegate.swift */,
-				D517B82423CDFDC000FC3F3E /* FavoriteViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -139,6 +139,14 @@
 				D5BFF5AC23CF6A0E00AED6C4 /* SearchPhotoCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		D5BFF5B823D0B48800AED6C4 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				D517B82423CDFDC000FC3F3E /* FavoriteViewController.swift */,
+			);
+			path = Favorite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
