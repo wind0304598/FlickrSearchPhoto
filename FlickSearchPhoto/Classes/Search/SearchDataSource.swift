@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let kApiKey = "5af828e3e5c2b87cbe93f69d2b7acecd"
+private let kApiKey = "51adeca3a9cfc2fa1719fb8b33daa0b0"
 private let kSearchApiUrlString = "https://www.flickr.com/services/rest/"
 
 private struct SearchResponse: Decodable {

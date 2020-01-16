@@ -50,6 +50,5 @@ extension SearchPhotoCell {
     func config(with photo: Photo) -> Void {
         photoImageView.setupImage(from: photo.imageUrl)
         titleLabel.text = photo.title
-        print(String(describing: photo))
     }
 }
